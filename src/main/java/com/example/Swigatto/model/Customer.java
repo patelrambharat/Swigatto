@@ -7,6 +7,9 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Builder
@@ -31,8 +34,12 @@ public class Customer {
     @Column(unique = true,nullable = false)
     @Size(min = 10, max = 10)
     String mobileNo;
-    
 
+    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
+    Cart cart;
+
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    List<OrderEntity> orders = new ArrayList<>();
 
 
 }

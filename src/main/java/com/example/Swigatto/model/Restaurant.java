@@ -6,6 +6,9 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Builder
@@ -30,4 +33,10 @@ public class Restaurant {
     String contactNumber;
 
     boolean opened;
+
+    @OneToMany(mappedBy = "restaurant",cascade = CascadeType.ALL)
+    List<FoodItem> availableFoodItems = new ArrayList<>();
+
+    @OneToMany(mappedBy = "restaurant",cascade = CascadeType.ALL)
+    List<OrderEntity> orders = new ArrayList<>();
 }
