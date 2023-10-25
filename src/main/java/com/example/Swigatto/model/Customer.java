@@ -1,6 +1,7 @@
 package com.example.Swigatto.model;
 
 
+import com.example.Swigatto.Enum.Gender;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
@@ -35,6 +36,8 @@ public class Customer {
     @Size(min = 10, max = 10)
     String mobileNo;
 
+    @Enumerated(EnumType.STRING)
+    Gender gender;
     @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
     Cart cart;
 
