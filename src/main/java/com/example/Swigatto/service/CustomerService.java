@@ -15,8 +15,10 @@ public class CustomerService {
 
     @Autowired
     CustomerRepository customerRepository;
+
     public CustomerResponse addCustomer(CustomerRequest customerRequest) {
-        //dto --> customer moder
+
+        // dto -> customer model
         Customer customer = CustomerTransformer.CustomerRequestToCustomer(customerRequest);
 
         //allocate a cart
@@ -25,7 +27,7 @@ public class CustomerService {
                 .customer(customer)
                 .build();
 
-        customer.setCart(cart);  //set the customer
+        customer.setCart(cart);
 
         // save both customer and cart
         Customer savedCustomer = customerRepository.save(customer);  // saves both customer and cart
@@ -33,6 +35,7 @@ public class CustomerService {
         // prepare response Dto
         return CustomerTransformer.CustomerToCustomerResponse(savedCustomer);
     }
+
     public CustomerResponse findCustomerByMobile(String mobile) {
 
         Customer customer = customerRepository.findByMobileNo(mobile);
