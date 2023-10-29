@@ -31,16 +31,13 @@ public class Customer {
     String email;
 
     String address;
-
     @Column(unique = true,nullable = false)
     @Size(min = 10, max = 10)
     String mobileNo;
-
     @Enumerated(EnumType.STRING)
     Gender gender;
     @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
     Cart cart;
-
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     List<OrderEntity> orders = new ArrayList<>();
 

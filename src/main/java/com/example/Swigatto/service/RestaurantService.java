@@ -14,7 +14,10 @@ import com.example.Swigatto.transformer.FoodItemTransformer;
 import com.example.Swigatto.transformer.RestaurantTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.ValidationUtils;
+import com.example.Swigatto.utils.ValidationUtils;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.Optional;
 
 
 @Service
@@ -22,7 +25,7 @@ public class RestaurantService {
 
 
     final RestaurantRespository restaurantRespository;
-   
+
     final ValidationUtils validationUtils;
 
 
@@ -61,7 +64,7 @@ public class RestaurantService {
         return "Restaurant is closed";
     }
 
-    public RestaurantResponse addFoodItemtToRestaurant(FoodRequest foodRequest) {
+    public RestaurantResponse addFoodItemtToRestaurant( FoodRequest foodRequest) {
 
         // check reataurant is valid or not
         if(!validationUtils.validateRestaurantId(foodRequest.getRestaurantId())){
